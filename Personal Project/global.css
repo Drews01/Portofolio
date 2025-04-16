@@ -1,0 +1,292 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;  
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff8f4;
+  color: #d4a373;
+  font-weight: bold;
+  border-bottom: 2px solid #d4a373; /* Golden brown border */
+  position: fixed; /* Ensure it stays at the top */
+  top: 0; /* Align it to the top of the viewport */
+  width: 100%; /* Ensure it spans the full width of the viewport */
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  z-index: 1000; /* Keep it above other elements */
+  overflow: hidden; /* Prevent horizontal overflow */
+  height: auto;
+}
+
+.navbar-left {
+  flex: 1; /* Ensure equal space for the left section */
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left img {
+  height: 50px; /* Adjust image size */
+  width: auto;
+  object-fit: contain; /* Ensure the image scales properly */
+}
+
+.navbar-left img:hover {
+  cursor: pointer; /* Change cursor on hover */
+  opacity: 0.8; /* Slightly fade the image on hover */
+}
+
+.navbar-center {
+  flex: 2;
+  text-align: center;
+  font-size: 16px bold;
+  position: relative; /* For positioning the tooltip */
+}
+
+.email-text {
+  color: #d4a373; /* Golden brown text color */
+  cursor: pointer;
+}
+
+.email-text:hover {
+  text-decoration: underline;
+}
+
+.email-container {
+  display: inline-block;
+  position: relative; /* For positioning the tooltip */
+}
+
+.copy-icon {
+  font-size: 16px;
+  cursor: pointer;
+  color: #d4a373; /* Golden brown text color */
+  margin-left: 5px;
+  display: none; /* Hide the icon by default */
+}
+
+.email-container:hover .copy-icon {
+  display: inline; /* Show the icon when hovering over the email */
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: #333; /* Dark background for tooltip */
+  color: #fff; /* White text for tooltip */
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  top: 125%; /* Position below the email */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.email-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.navbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar a {
+  color: #d4a373;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 16px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  color: #d4a373; /* Golden brown hover effect */
+}
+
+main {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100vh; /* Full viewport height */
+  position: relative; /* For positioning the shield container */
+  perspective: 1000px; /* Add perspective for 3D effect */
+}
+
+.scene {
+  position: relative;
+  width: 430px;
+  height: 430px;
+  margin-top: -50px;
+}
+
+.shield-container {
+  position: relative;
+  width: 100%; /* Adjust based on shield size */
+  height: 100%; /* Adjust based on shield size */
+}
+
+.popup {
+  position: absolute; /* Posisi relatif terhadap .shield-container */
+  top: 60%; /* Posisikan di tengah secara vertikal */
+  left: 50%; /* Posisikan di tengah secara horizontal */
+  transform: translate(-50%, -50%); /* Pastikan benar-benar di tengah */
+  color: #d4a373; /* Warna teks */
+  padding: 40px 80px; /* Perbesar spasi di dalam pop-up */
+  border-radius: 15px; /* Membuat sudut membulat */
+  font-size: 100px; /* Perbesar ukuran font */
+  text-align: center; /* Teks di tengah */
+  z-index: 1000; /* Pastikan di atas elemen lain */
+  opacity: 0; /* Awalnya tidak terlihat */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Animasi muncul */
+}
+
+.popup.hidden {
+  display: none; /* Sembunyikan pop-up */
+}
+
+
+.project-box {
+  text-align: center;
+  padding: 20px 40px; /* Spasi di dalam box */
+  background-color: rgba(0, 0, 0, 0.8); /* Warna latar belakang gelap */
+  border-radius: 10px; /* Membuat sudut membulat */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Tambahkan bayangan */
+  opacity: 0; /* Awalnya tidak terlihat */
+  transition: opacity 0.5s ease; /* Animasi muncul */
+}
+
+.project-box.hidden {
+  display: none; /* Sembunyikan box */
+}
+
+.project-link {
+  display: block; /* Jadikan seluruh kotak dapat diklik */
+  color: white; /* Warna teks */
+  font-size: 18px; /* Ukuran font */
+  text-decoration: none; /* Hilangkan garis bawah */
+  font-weight: bold;
+}
+
+.project-link:hover {
+  color: #d4a373; /* Warna hover */
+}
+
+.shield.hidden {
+  display: none; /* Sembunyikan shield */
+}
+
+.shield {
+  width: 100%; /* Make the shield fill the container */;
+  height: auto; /* Maintain aspect ratio */
+  position: relative;
+  z-index: 2; /* Ensure the shield stays above the viruses */
+}
+
+.virus-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width of the scene */
+  height: 100%; /* Full height of the scene */
+}
+
+.virus {
+  position: absolute;
+  width: 75px; /* Adjust virus size */
+  height: 75px; /* Adjust virus size */
+  animation: bounce 2s ease-in-out infinite; /* Add bounce animation */
+  z-index: 1;
+  transition: all 0.5s ease; /* Smooth transition for size and position changes */
+}
+
+/* Virus positions */
+.virus-top-left {
+  top: 0; /* Slightly above the shield */
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.virus-top-right {
+  top: 0;
+  right: 0; /* Slightly to the right of the shield */
+  transform: translateY(-50%);
+}
+
+.virus-bottom-left {
+  bottom: 0; /* Slightly below the shield */
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.virus-bottom-right {
+  bottom: 0;
+  right: 0; /* Slightly to the left of the shield */
+  transform: translateY(-50%);
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0); /* Default position */
+  }
+  50% {
+    transform: translateY(-10px); /* Move up slightly */
+  }
+}
+
+.virus-hidden {
+  width: 0; /* Mengecilkan ukuran virus */
+  height: 0; /* Mengecilkan ukuran virus */
+  opacity: 0; /* Membuat virus tidak terlihat */
+  transition: all 0.5s ease; /* Animasi untuk perubahan ukuran, posisi, dan opacity */
+}
+
+.virus-top-left.virus-hidden {
+  top: 0; /* Pindah ke pojok atas-kiri layar */
+  left: 0;
+  transform: none; /* Hilangkan transformasi */
+}
+
+.virus-top-right.virus-hidden {
+  top: 0; /* Pindah ke pojok atas-kanan layar */
+  right: 0;
+  transform: none;
+}
+
+.virus-bottom-left.virus-hidden {
+  bottom: 0; /* Pindah ke pojok bawah-kiri layar */
+  left: 0;
+  transform: none;
+}
+
+.virus-bottom-right.virus-hidden {
+  bottom: 0; /* Pindah ke pojok bawah-kanan layar */
+  right: 0;
+  transform: none;
+}
+
+.footer {
+  background-color: #fdf5e6; /* Warna serupa dengan navbar */
+  color: #b5835a; /* Warna teks serupa dengan navbar */
+  text-align: center; /* Teks di tengah */
+  padding: 20px 0; /* Spasi atas dan bawah */
+  font-size: 16px; /* Ukuran font */
+  font-weight: bold; /* Teks tebal */
+  border-top: 2px solid #d4a373; /* Garis atas untuk pemisah */
+}
+
+.footer p {
+  margin: 0; /* Hilangkan margin default */
+}
